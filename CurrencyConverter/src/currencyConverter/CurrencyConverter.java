@@ -11,6 +11,7 @@ import javax.swing.DefaultComboBoxModel;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Color;
+import javax.swing.UIManager;
 
 public class CurrencyConverter extends JFrame {
 	private JTextField txtAmount;
@@ -68,7 +69,7 @@ public class CurrencyConverter extends JFrame {
 		
 		JButton btnNewButton = new JButton("Convert");
 		btnNewButton.setForeground(new Color(0, 0, 0));
-		btnNewButton.setBackground(new Color(230, 230, 250));
+		btnNewButton.setBackground(new Color(255, 255, 255));
 		btnNewButton.setFont(new Font("Arial Black", Font.PLAIN, 11));
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -102,6 +103,11 @@ public class CurrencyConverter extends JFrame {
 	}
 
 	public static void main(String[] args) {
+		try {
+			UIManager.setLookAndFeel("javax.swing.plaf.metal.MetalLookAndFeel");
+		} catch (Throwable e) {
+			e.printStackTrace();
+		}
 		CurrencyConverter myConverter = new CurrencyConverter();
 		myConverter.setSize(450, 300);
 		myConverter.setVisible(true);

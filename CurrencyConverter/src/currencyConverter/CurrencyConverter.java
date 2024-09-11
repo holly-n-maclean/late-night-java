@@ -48,6 +48,7 @@ public class CurrencyConverter extends JFrame {
 		getContentPane().setBackground(new Color(230, 230, 250));
 		setTitle("Holly's Currency Converter");
 		getContentPane().setLayout(null);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		JLabel lblNewLabel = new JLabel("Currency Converter");
 		lblNewLabel.setForeground(new Color(0, 0, 0));

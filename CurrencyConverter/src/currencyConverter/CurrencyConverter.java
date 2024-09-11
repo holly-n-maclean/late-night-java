@@ -21,27 +21,39 @@ public class CurrencyConverter extends JFrame {
 	
 	public void convertCurrency() {
         double total;
-        double amount = Double.parseDouble(txtAmount.getText());
-        
-        if (textFrom.getSelectedItem().equals("USD") 
-                && (txtTo.getSelectedItem().toString().equals("CAD"))) {
-            total = amount * 1.27;
-            lblNewLabel_3.setText("$" + String.format("%.2f", total) + " CAD");
+        try {
+            double amount = Double.parseDouble(txtAmount.getText());
+
+            if (textFrom.getSelectedItem().equals("USD") 
+                    && (txtTo.getSelectedItem().toString().equals("CAD"))) {
+                total = amount * 1.27;
+                lblNewLabel_3.setText("$" + String.format("%.2f", total) + " CAD");
+            }
+            else if (textFrom.getSelectedItem().equals("USD")
+                    && (txtTo.getSelectedItem().toString().equals("AUD"))) {
+                total = amount * 1.35;
+                lblNewLabel_3.setText("$" + String.format("%.2f", total) + " AUD");
+            } else if (textFrom.getSelectedItem().equals("CAD")
+                    && (txtTo.getSelectedItem().toString().equals("USD"))) {
+                total = amount * 0.79;
+                lblNewLabel_3.setText("$" + String.format("%.2f", total) + " USD");
+            } else if (textFrom.getSelectedItem().equals("CAD")
+                    && (txtTo.getSelectedItem().toString().equals("AUS"))) {
+                total = amount * 1.06;
+                lblNewLabel_3.setText("$" + String.format("%.2f", total) + " AUD");
+            } else if (textFrom.getSelectedItem().equals("AUD") && (txtTo.getSelectedItem().toString().equals("USD"))) {
+                total = amount * 0.74;
+                lblNewLabel_3.setText("$" + String.format("%.2f", total) + " USD");
+            } else if (textFrom.getSelectedItem().equals("AUD") && (txtTo.getSelectedItem().toString().equals("CAD"))) {
+                total = amount * 0.94;
+                lblNewLabel_3.setText("$" + String.format("%.2f", total) + " CAD");
+            } else {
+                lblNewLabel_3.setText("Invalid conversion");
+            }
+        } catch (NumberFormatException e) {
+            lblNewLabel_3.setText("Please enter a number");
         }
-        else if (textFrom.getSelectedItem().equals("USD")
-                && (txtTo.getSelectedItem().toString().equals("AUS"))) {
-            total = amount * 1.35;
-            lblNewLabel_3.setText("$" + String.format("%.2f", total) + " AUS");
-        } else if (textFrom.getSelectedItem().equals("CAD")
-                && (txtTo.getSelectedItem().toString().equals("USD"))) {
-            total = amount * 0.79;
-            lblNewLabel_3.setText("$" + String.format("%.2f", total) + " USD");
-        } else if (textFrom.getSelectedItem().equals("CAD")
-                && (txtTo.getSelectedItem().toString().equals("AUS"))) {
-            total = amount * 1.06;
-            lblNewLabel_3.setText("$" + String.format("%.2f", total) + " AUS");
-        }
-	}
+    }
 	
 	public CurrencyConverter() {
 		getContentPane().setFont(new Font("Arial Black", Font.PLAIN, 11));
@@ -59,7 +71,7 @@ public class CurrencyConverter extends JFrame {
 		
 		textFrom = new JComboBox<String>();
 		textFrom.setFont(new Font("Georgia", Font.PLAIN, 11));
-		textFrom.setModel(new DefaultComboBoxModel<String>(new String[] {"CAD", "USD"}));
+		textFrom.setModel(new DefaultComboBoxModel<String>(new String[] {"CAD", "USD", "AUD"}));
 		textFrom.setBounds(195, 109, 51, 22);
 		getContentPane().add(textFrom);
 		
@@ -82,7 +94,7 @@ public class CurrencyConverter extends JFrame {
 		
 		txtTo = new JComboBox<String>();
 		txtTo.setFont(new Font("Georgia", Font.PLAIN, 11));
-		txtTo.setModel(new DefaultComboBoxModel<String>(new String[] {"USD", "CAD", "AUS"}));
+		txtTo.setModel(new DefaultComboBoxModel<String>(new String[] {"USD", "CAD", "AUD"}));
 		txtTo.setBounds(298, 109, 51, 22);
 		getContentPane().add(txtTo);
 		
